@@ -33,39 +33,76 @@ end
 
 -- Orbs
 local function createOrb()
-    local newOrb = display.newImageRect( mainGroup, "img/purpleBall", 120, 140 )
+    
+    local newOrb = display.newImageRect( mainGroup, "img/purpleBall.png", 80, 80 )
     table.insert( orbsTable, newOrb )
     physics.addBody( newOrb, "dynamic", {radius=60, bounce=0.8} )
     newOrb.myName = "orb"
 
-    local newOrb2 = display.newImageRect( mainGroup, "img/purpleBall", 120, 150 )
+    local newOrb2 = display.newImageRect( mainGroup, "img/purpleBall.png", 80, 80 )
     table.insert( orbsTable, newOrb )
     physics.addBody( newOrb2, "dynamic", {radius=60, bounce=0.8} )
     newOrb2.myName = "orb"
 
+    local newOrb3 = display.newImageRect( mainGroup, "img/purpleBall.png", 80, 80 )
+    table.insert( orbsTable, newOrb )
+    physics.addBody( newOrb3, "dynamic", {radius=60, bounce=0.8} )
+    newOrb3.myName = "orb"
+
+    local newOrb4 = display.newImageRect( mainGroup, "img/purpleBall.png", 80, 80 )
+    table.insert( orbsTable, newOrb )
+    physics.addBody( newOrb4, "dynamic", {radius=60, bounce=0.8} )
+    newOrb4.myName = "orb"
+
+    local newOrb5 = display.newImageRect( mainGroup, "img/purpleBall.png", 80, 80 )
+    table.insert( orbsTable, newOrb )
+    physics.addBody( newOrb5, "dynamic", {radius=60, bounce=0.8} )
+    newOrb5.myName = "orb"
+
+    local newOrb6 = display.newImageRect( mainGroup, "img/purpleBall.png", 80, 80 )
+    table.insert( orbsTable, newOrb )
+    physics.addBody( newOrb6, "dynamic", {radius=60, bounce=0.8} )
+    newOrb6.myName = "orb"
+
     local whereFrom = math.random( 1 )
 
-    if (whereFrom == 1) then
-        newOrb.x = math.random( display.contentWidth + 190, display.contentWidth + 220 )
-        newOrb.y = math.random( 100, display.contentHeight -130 )
-        newOrb:setLinearVelocity( -300, 0 )
-        print( display.actualContentHeight )
+        if ( whereFrom == 1 ) then
+            newOrb.x = math.random( display.contentWidth + 190, display.contentWidth + 220 )
+            newOrb.y = math.random( 100, display.contentHeight -130 )
+            newOrb:setLinearVelocity( -1200, 0 )
+            print( display.actualContentHeight )
     
-        newOrb2.x = math.random( display.contentWidth + 190, display.contentWidth + 220 )
-        newOrb2.y = math.random( 60, 740 )
-        newOrb2:setLinearVelocity( -300, 0 )
+            newOrb2.x = math.random( display.contentWidth + 190, display.contentWidth + 220 )
+            newOrb2.y = math.random( 60, 740 )
+            newOrb2:setLinearVelocity( -1000, 0 )
 
-    --[[
-        elseif ( whereFrom == 2 ) then
-        -- From the top
-        newOrb.x = math.random( display.contentWidth )
-        newOrb.y = -60
-        newOrb:setLinearVelocity( math.random( -40,40 ), math.random( 40,120 ) )
-    --]]
+            newOrb3.x = math.random( display.contentWidth + 190, display.contentWidth + 220 )
+            newOrb3.y = math.random( 60, 740 )
+            newOrb3:setLinearVelocity( -800, 0 )
+
+            newOrb4.x = math.random( display.contentWidth + 190, display.contentWidth + 220 )
+            newOrb4.y = math.random( 60, 740 )
+            newOrb4:setLinearVelocity( -600, 0 )
+
+            newOrb5.x = math.random( display.contentWidth + 190, display.contentWidth + 220 )
+            newOrb5.y = math.random( 60, 740 )
+            newOrb5:setLinearVelocity( -400, 0 )
+
+            newOrb6.x = math.random( display.contentWidth + 190, display.contentWidth + 220 )
+            newOrb6.y = math.random( 60, 740 )
+            newOrb6:setLinearVelocity( -200, 0 )
+
+        --[[
+            elseif ( whereFrom == 2 ) then
+            -- From the top
+            newOrb.x = math.random( display.contentWidth )
+            newOrb.y = -60
+            newOrb:setLinearVelocity( math.random( -40,40 ), math.random( 40,120 ) )
+        --]]
      
-    end
+        end
 
-end
+    end
 
 -- Spell
 local function spell()
@@ -77,8 +114,8 @@ local function spell()
     newSpell.x = girl.x
     newSpell.y = girl.y
     newSpell:toBack()
-    transition.to( newSpell, {x=1200, time=1600,
-        onComplete = function() display.remove( newLaser ) end
+    transition.to( newSpell, {x=1000, time=800, --1200 1600
+        onComplete = function() display.remove( newSpell ) end
     } )
 end
 
@@ -130,11 +167,10 @@ local function restoreGirl()
 end
 
 -- End Game
---[[
 local function endGame()
     composer.setVariable( "finalScore", score )
     composer.gotoScene( "highscores", {time=800, effect="crossFade"} )
---]]
+end
 
 -- Collison
 local function onCollision( event )
@@ -152,11 +188,11 @@ local function onCollision( event )
             obj1 = display.newImageRect( mainGroup, "img/explosion.png", 100, 100 )
             display.remove( obj1 )
             display.remove( obj2 )
-            -- audio.setVolume( 0.9, {channel=1} )
-            -- audio.play( explosionSound )
+            --audio.setVolume( 0.9, {channel=1} )
+            --audio.play( explosionSound )
 
             for i = #orbsTable, 1, -1 do
-                if ( orbsTable[1] == obj1 or orbsTable[i] == obj2 ) then
+                if ( orbsTable[i] == obj1 or orbsTable[i] == obj2 ) then
                     table.remove( orbsTable, i )
                     break
                 end
@@ -231,8 +267,8 @@ function scene:create( event )
         Runtime:addEventListener( "enterFrame", background )
 
         -- Display lives and score
-        livesText = display.newText( uiGroup, "Lives: " .. lives, 200, 80, native.systemFont, 36 )
-        scoreText = display.newText( uiGroup, "Score: " .. score, 400, 80, native.systemFont, 36 )
+        livesText = display.newText( uiGroup, "Lives: " .. lives, -60, 80, native.systemFont, 36 )
+        scoreText = display.newText( uiGroup, "Score: " .. score, 110, 80, native.systemFont, 36 )
 
         girl:addEventListener( "touch", dragGirl )
 

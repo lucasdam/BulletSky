@@ -8,7 +8,7 @@ local json = require( "json" )
 
 local scoresTable = {}
 
-local filePath = system.pathForFile( "scores.jason", system.DocumentsDirectory )
+local filePath = system.pathForFile( "scores.json", system.DocumentsDirectory )
 
 -- Load scores
 local function loadScores()
@@ -36,7 +36,7 @@ local function saveScores()
     local file = io.open( filePath, "w" )
 
     if file then
-        file:write( jason.encode( scoresTable ) )
+        file:write( json.encode( scoresTable ) )
         io.close( file )
     end
 end
@@ -73,17 +73,17 @@ function scene:create( event )
 
     --Load background
 
-    local highScoresHeader = display.newText( sceneGroup, "High Scores", display.contentCenterX + 150, 170, native.system, 60 )
+    local highScoresHeader = display.newText( sceneGroup, "High Scores", display.contentCenterX, 170, native.system, 60 )
 
     for i = 1, 4 do
         if ( scoresTable[i] ) then
-            local yPos = 170 ( i * 100 )
+            local yPos = 170 + ( i * 100 )
 
-            local rankNum = display.newText( sceneGroup, i .. ") ", display.contentCenterX + 100, yPos, native.systemFont, 50 )
+            local rankNum = display.newText( sceneGroup, i .. ".", display.contentCenterX -100, yPos, native.systemFont, 50 )
             rankNum:setFillColor( 0.8 )
             rankNum.anchorX = 1
 
-            local thisScore = display.newText( sceneGroup, scoresTable[i], display.contentCenterX + 100, yPos, native.systemFont, 50 )
+            local thisScore = display.newText( sceneGroup, scoresTable[i], display.contentCenterX, yPos, native.systemFont, 50 )
             thisScore.anchorX = 0
         end
     end
@@ -94,3 +94,42 @@ function scene:create( event )
 end
 
 -- show()
+function scene:show( event )
+
+    local sceneGroup = self.view
+    local phase = event.phase
+
+    if ( phase == "will" ) then
+        -- Code here runs when the scene is still of screen (but is about to come on screen)
+    elseif ( phase == "did" ) then
+        -- Code here runs when the scene is entirely on screen
+    end
+end
+
+-- hide()
+function scene:hide( event )
+
+    local sceneGroup = self.view
+    local phase = event.phase
+
+    if ( phase == "will" ) then
+        -- Code here runs when the scene is on screen (but is about to go off screen)
+    elseif ( phase == "did" ) then
+        composer.removeScene( "highscores" )
+    end
+end
+
+-- destroy()
+function scene:destroy( event )
+
+    local sceneGroup = self.view
+    -- Code here runs prior to the removal of scene's view
+end
+
+-- Scene event function listeners
+scene:addEventListener( "create", scene )
+scene:addEventListener( "show", scene )
+scene:addEventListener( "hide", scene )
+scene:addEventListener( "destroy", scene )
+
+return scene
