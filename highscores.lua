@@ -75,7 +75,7 @@ function scene:create( event )
 
     local highScoresHeader = display.newText( sceneGroup, "High Scores", display.contentCenterX, 170, native.system, 60 )
 
-    for i = 1, 4 do
+    for i = 1, 3 do
         if ( scoresTable[i] ) then
             local yPos = 170 + ( i * 100 )
 
@@ -83,13 +83,13 @@ function scene:create( event )
             rankNum:setFillColor( 0.8 )
             rankNum.anchorX = 1
 
-            local thisScore = display.newText( sceneGroup, scoresTable[i], display.contentCenterX, yPos, native.systemFont, 50 )
+            local thisScore = display.newText( sceneGroup, scoresTable[i], display.contentCenterX -50, yPos, native.systemFont, 50 )
             thisScore.anchorX = 0
         end
     end
 
-    local menuButton = display.newText( sceneGroup, "Menu", display.contentWidth - 50, display.contentCenterY + 200, native.systemFont, 70 )
-    menuButton:setFillColor( 0.75, 0.78, 1 )
+    local menuButton = display.newText( sceneGroup, "Menu", display.contentWidth - 50, display.contentCenterY + 200, native.systemFont, 40 )
+    menuButton:setFillColor( 1, 1, 1 )
     menuButton:addEventListener( "tap", gotoMenu )
 end
 

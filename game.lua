@@ -39,27 +39,27 @@ local function createOrb()
     physics.addBody( newOrb, "dynamic", {radius=60, bounce=0.8} )
     newOrb.myName = "orb"
 
-    local newOrb2 = display.newImageRect( mainGroup, "img/purpleBall.png", 80, 80 )
+    local newOrb2 = display.newImageRect( mainGroup, "img/pinkBall.png", 80, 80 )
     table.insert( orbsTable, newOrb )
     physics.addBody( newOrb2, "dynamic", {radius=60, bounce=0.8} )
     newOrb2.myName = "orb"
 
-    local newOrb3 = display.newImageRect( mainGroup, "img/purpleBall.png", 80, 80 )
+    local newOrb3 = display.newImageRect( mainGroup, "img/weirdBall.png", 80, 80 )
     table.insert( orbsTable, newOrb )
     physics.addBody( newOrb3, "dynamic", {radius=60, bounce=0.8} )
     newOrb3.myName = "orb"
 
-    local newOrb4 = display.newImageRect( mainGroup, "img/purpleBall.png", 80, 80 )
+    local newOrb4 = display.newImageRect( mainGroup, "img/redBall.png", 80, 80 )
     table.insert( orbsTable, newOrb )
     physics.addBody( newOrb4, "dynamic", {radius=60, bounce=0.8} )
     newOrb4.myName = "orb"
 
-    local newOrb5 = display.newImageRect( mainGroup, "img/purpleBall.png", 80, 80 )
+    local newOrb5 = display.newImageRect( mainGroup, "img/blueBall.png", 80, 80 )
     table.insert( orbsTable, newOrb )
     physics.addBody( newOrb5, "dynamic", {radius=60, bounce=0.8} )
     newOrb5.myName = "orb"
 
-    local newOrb6 = display.newImageRect( mainGroup, "img/purpleBall.png", 80, 80 )
+    local newOrb6 = display.newImageRect( mainGroup, "img/yellowBall.png", 80, 80 )
     table.insert( orbsTable, newOrb )
     physics.addBody( newOrb6, "dynamic", {radius=60, bounce=0.8} )
     newOrb6.myName = "orb"
@@ -119,7 +119,7 @@ local function spell()
     } )
 end
 
--- Girl's Movement
+-- dragGirl()
 local function dragGirl( event )
     
     local girl = event.target

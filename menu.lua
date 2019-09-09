@@ -23,17 +23,17 @@ function scene:create( event )
     --Add menu background
     
     local title = display.newText( sceneGroup, "Death Bullets", display.contentCenterX, 700, native.systemFont, 100 )
-    title:setFillColor( 0.82, 0.86, 1 )
+    title:setFillColor( 0.686, 0.388, 0.811 ) --0.82 0.86 1
     title.x = display.contentCenterX
     title.y = display.contentCenterY
 
     local playButton = display.newText( sceneGroup, "Play", display.contentCenterX, 700, native.systemFont, 44 )
-    playButton:setFillColor( 0.82, 0.86, 1 )
+    playButton:setFillColor( 1, 1, 1 )
     playButton.x = display.contentCenterX
-    playButton.y = display.contentCenterY + 200
+    playButton.y = display.contentCenterY + 220
 
-    local highScoresButton = display.newText( sceneGroup, "High Scores", display.contentCenterX, 700, native.systemFont, 44 )
-    highScoresButton:setFillColor( 0.75, 0.78, 1 )
+    local highScoresButton = display.newText( sceneGroup, "Scores", display.contentCenterX, 700, native.systemFont, 44 )
+    highScoresButton:setFillColor( 1, 1, 1 )
     highScoresButton.x = display.contentCenterX
     highScoresButton.y = display.contentCenterY + 290
 
