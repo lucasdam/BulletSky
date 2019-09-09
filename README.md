@@ -9,14 +9,12 @@ Jovens e adultos com idade entre 8 e 60 anos
 
 ## Enredo
 
-## Personagens
-- Sakura
-
 ## Personagem Principal
-Sakura.
+- Sakura
 
 ## Inimigos
 - Orb
+- Inimigo
 
 ## Objetivos Específicos
 - Desviar das Orbs
