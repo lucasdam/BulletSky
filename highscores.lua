@@ -88,6 +88,10 @@ function scene:create( event )
         end
     end
 
+    --local menuButton = display.newImageRect( sceneGroup, "img/play.png", 100, 100 )
+    --menuButton.x = display.contentCenterX - 240
+    --menuButton.y = display.contentCenterY + 220
+
     local menuButton = display.newText( sceneGroup, "Menu", display.contentWidth - 50, display.contentCenterY + 200, native.systemFont, 40 )
     menuButton:setFillColor( 1, 1, 1 )
     menuButton:addEventListener( "tap", gotoMenu )

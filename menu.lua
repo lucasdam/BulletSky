@@ -27,18 +27,30 @@ function scene:create( event )
     title.x = display.contentCenterX
     title.y = display.contentCenterY
 
-    local playButton = display.newText( sceneGroup, "Play", display.contentCenterX, 700, native.systemFont, 44 )
-    playButton:setFillColor( 1, 1, 1 )
-    playButton.x = display.contentCenterX
+    -- Play
+    local playButton = display.newImageRect( sceneGroup, "img/play.png", 100, 100 )
+    playButton.x = display.contentCenterX - 240
     playButton.y = display.contentCenterY + 220
 
-    local highScoresButton = display.newText( sceneGroup, "Scores", display.contentCenterX, 700, native.systemFont, 44 )
-    highScoresButton:setFillColor( 1, 1, 1 )
-    highScoresButton.x = display.contentCenterX
-    highScoresButton.y = display.contentCenterY + 290
+    local playText = display.newText( sceneGroup, "Play", display.contentCenterX, 700, native.systemFont, 44 )
+    playButton:setFillColor( 1, 1, 1 )
+    playText.x = playButton.x + 120
+    playText.y = playButton.y
+
+    -- Scores
+    local highScoresButton = display.newImageRect( sceneGroup, "img/scores.png", 100, 100 )
+    highScoresButton.x = display.contentCenterX + 80
+    highScoresButton.y = display.contentCenterY + 220
+    
+    local highScoresText = display.newText( sceneGroup, "Scores", display.contentCenterX, 700, native.systemFont, 44 )
+    highScoresText:setFillColor( 1, 1, 1 )
+    highScoresText.x = highScoresButton.x + 147
+    highScoresText.y = highScoresButton.y
 
     playButton:addEventListener( "tap", gotoGame )
+    playText:addEventListener( "tap", gotoGame )
     highScoresButton:addEventListener( "tap", gotoHighScores )
+    highScoresText:addEventListener( "tap", gotoHighScores )
 
     --musicTrack = audio.loadStream( "sounds/menu.mp3" )
 
