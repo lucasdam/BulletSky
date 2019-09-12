@@ -33,7 +33,7 @@ function scene:create( event )
     playButton.y = display.contentCenterY + 220
 
     local playText = display.newText( sceneGroup, "Play", display.contentCenterX, 700, native.systemFont, 44 )
-    playButton:setFillColor( 1, 1, 1 )
+    playText:setFillColor( 1, 1, 1 )
     playText.x = playButton.x + 120
     playText.y = playButton.y
 

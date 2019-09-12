@@ -21,8 +21,10 @@ local function loadScores()
         scoresTable = json.decode( contents )
     end
 
+    --scoresTable = {0, 0, 0, 0, 0}
+
     if ( scoresTable == nil or #scoresTable == 0 ) then
-        scoresTable = {0, 0, 0, 0}
+        scoresTable = {0, 0, 0, 0, 0}
     end
 end
 
@@ -41,11 +43,14 @@ local function saveScores()
     end
 end
 
-
+-- Go to
 local function gotoMenu()
     composer.gotoScene( "menu", {time=800, effect="crossFade"} )
 end
 
+local function gotoGame()
+    composer.gotoScene( "game", {time=800, effect="crossFade"} )
+end
 
 -- Scene event functions
 
@@ -73,28 +78,48 @@ function scene:create( event )
 
     --Load background
 
-    local highScoresHeader = display.newText( sceneGroup, "High Scores", display.contentCenterX, 170, native.system, 60 )
+    local highScoresHeader = display.newText( sceneGroup, "High Scores", display.contentCenterX, 120, native.system, 70 )
+    highScoresHeader:setFillColor( 0.9, 0.9, 0.3 )
 
-    for i = 1, 3 do
+    for i = 1, 5 do
         if ( scoresTable[i] ) then
             local yPos = 170 + ( i * 100 )
 
-            local rankNum = display.newText( sceneGroup, i .. ".", display.contentCenterX -100, yPos, native.systemFont, 50 )
+            local rankNum = display.newText( sceneGroup, i .. ".", display.contentCenterX -400, yPos, native.systemFont, 50 )
             rankNum:setFillColor( 0.8 )
             rankNum.anchorX = 1
 
-            local thisScore = display.newText( sceneGroup, scoresTable[i], display.contentCenterX -50, yPos, native.systemFont, 50 )
+            local thisScore = display.newText( sceneGroup, scoresTable[i], display.contentCenterX -350, yPos, native.systemFont, 50 )
             thisScore.anchorX = 0
         end
     end
 
-    --local menuButton = display.newImageRect( sceneGroup, "img/play.png", 100, 100 )
-    --menuButton.x = display.contentCenterX - 240
-    --menuButton.y = display.contentCenterY + 220
+    -- Back to Menu
+    local menuButton = display.newImageRect( sceneGroup, "img/menu.png", 100, 100 )
+    menuButton.x = display.contentCenterX + 170
+    menuButton.y = display.contentCenterY + 160
 
-    local menuButton = display.newText( sceneGroup, "Menu", display.contentWidth - 50, display.contentCenterY + 200, native.systemFont, 40 )
-    menuButton:setFillColor( 1, 1, 1 )
+    local menuText = display.newText( sceneGroup, "Menu", display.contentCenterX, 700, native.systemFont, 44 )
+    menuText:setFillColor( 1, 1, 1 )
+    menuText.x = menuButton.x + 135 
+    menuText.y = menuButton.y
+
+    -- Play again
+    local playAgainButton = display.newImageRect( sceneGroup, "img/play.png", 100, 100 )
+    playAgainButton.x = menuButton.x
+    playAgainButton.y = menuButton.y - 200
+
+    local playAgainText = display.newText( sceneGroup, "Play again", display.contentCenterX, 700, native.systemFont, 44 )
+    playAgainText:setFillColor( 1, 1, 1 )
+    playAgainText.x = playAgainButton.x + 180
+    playAgainText.y = playAgainButton.y
+
+    -- Go to
     menuButton:addEventListener( "tap", gotoMenu )
+    menuText:addEventListener( "tap", gotoMenu )
+    playAgainButton:addEventListener( "tap", gotoGame )
+    playAgainText:addEventListener( "tap", gotoGame )
+
 end
 
 -- show()

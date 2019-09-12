@@ -9,7 +9,7 @@ physics.setGravity( 0, 0 )
 
 -- Initialize variables
 local score = 0
-local lives = 1
+local lives = 3
 local died = false
 local orbsTable = {}
 local gameLoopTimer
@@ -127,8 +127,10 @@ local function dragGirl( event )
 
     if ( "began" == phase ) then
         display.currentStage:setFocus( girl )
+        girl.touchOffsetX = event.x - girl.x 
         girl.touchOffsetY = event.y - girl.y
     elseif ( "moved" == phase ) then
+        girl.x = event.x - girl.touchOffsetX
         girl.y = event.y - girl.touchOffsetY
     elseif ( "ended" == phase or "cancelled" == phase ) then
         display.currentStage:setFocus( nil )
@@ -143,14 +145,41 @@ local function gameLoop()
     createOrb()
 end
 
--- Spell's Loop
+--Spell's Loop
 local function spellLoop()
     if ( lives == 0 ) then
         return nil
     else
-        spell()
+        spell() --girl:addEventListener( "tap", spell )
     end
 end
+
+--[[
+----------------------------------------------------------------------------------------------------------
+-- Create display object on the screen
+local newRect = display.newRect( display.contentCenterX, 160, 60, 60 )
+newRect:setFillColor( 1, 0, 0.3 )
+
+-- Touch event listener
+local function touchListener( event )
+
+    if ( event.phase == "began" ) then
+        event.target.alpha = 0.5
+        -- Set focus on object
+        display.getCurrentStage():setFocus( event.target )
+
+    elseif ( event.phase == "ended" or event.phase == "cancelled" ) then
+        event.target.alpha = 1
+        -- Release focus on object
+        display.getCurrentStage():setFocus( nil )
+    end
+    return true
+end
+
+-- Add a touch listener to the object
+newRect:addEventListener( "tap", touchListener )
+----------------------------------------------------------------------------------------------------------
+--]]
 
 -- Restore Girl
 local function restoreGirl()
@@ -158,7 +187,7 @@ local function restoreGirl()
     girl.x = -70
     girl.y = display.contentCenterY
     -- Fade in the girl
-    transition.to( girl, {alpha=1, time=800,
+    transition.to( girl, {alpha=1, time=600,
         onComplete = function()
             girl.isBodyActive = true
             died = false
@@ -268,7 +297,7 @@ function scene:create( event )
 
         -- Display lives and score
         livesText = display.newText( uiGroup, "Lives: " .. lives, -60, 80, native.systemFont, 36 )
-        scoreText = display.newText( uiGroup, "Score: " .. score, 110, 80, native.systemFont, 36 )
+        scoreText = display.newText( uiGroup, "Score: " .. score, 120, 80, native.systemFont, 36 )
 
         girl:addEventListener( "touch", dragGirl )
 
