@@ -283,7 +283,7 @@ function scene:create( event )
         background.y = display.contentCenterY
         background.width = 1390
         background.height = 770
-        background.alpha = 0.8
+        background.alpha = 0.7
 
 -- Girl
         girl = display.newImageRect( mainGroup, "img/girl.png", 100, 110 )

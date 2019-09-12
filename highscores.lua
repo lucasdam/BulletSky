@@ -78,18 +78,18 @@ function scene:create( event )
 
     --Load background
 
-    local highScoresHeader = display.newText( sceneGroup, "High Scores", display.contentCenterX, 120, native.system, 70 )
+    local highScoresHeader = display.newText( sceneGroup, "High Scores", display.contentCenterX, 130, "fonts/blackchancery", 70 )
     highScoresHeader:setFillColor( 0.9, 0.9, 0.3 )
 
     for i = 1, 5 do
         if ( scoresTable[i] ) then
             local yPos = 170 + ( i * 100 )
 
-            local rankNum = display.newText( sceneGroup, i .. ".", display.contentCenterX -400, yPos, native.systemFont, 50 )
+            local rankNum = display.newText( sceneGroup, i .. ".", display.contentCenterX -400, yPos, "fonts/blackchancery", 50 )
             rankNum:setFillColor( 0.8 )
             rankNum.anchorX = 1
 
-            local thisScore = display.newText( sceneGroup, scoresTable[i], display.contentCenterX -350, yPos, native.systemFont, 50 )
+            local thisScore = display.newText( sceneGroup, scoresTable[i], display.contentCenterX -350, yPos, "fonts/blackchancery", 50 )
             thisScore.anchorX = 0
         end
     end
@@ -99,7 +99,7 @@ function scene:create( event )
     menuButton.x = display.contentCenterX + 170
     menuButton.y = display.contentCenterY + 160
 
-    local menuText = display.newText( sceneGroup, "Menu", display.contentCenterX, 700, native.systemFont, 44 )
+    local menuText = display.newText( sceneGroup, "Menu", display.contentCenterX, 700, "fonts/blackchancery", 44 )
     menuText:setFillColor( 1, 1, 1 )
     menuText.x = menuButton.x + 135 
     menuText.y = menuButton.y
@@ -109,7 +109,7 @@ function scene:create( event )
     playAgainButton.x = menuButton.x
     playAgainButton.y = menuButton.y - 200
 
-    local playAgainText = display.newText( sceneGroup, "Play again", display.contentCenterX, 700, native.systemFont, 44 )
+    local playAgainText = display.newText( sceneGroup, "Play again", display.contentCenterX, 700, "fonts/blackchancery", 44 )
     playAgainText:setFillColor( 1, 1, 1 )
     playAgainText.x = playAgainButton.x + 180
     playAgainText.y = playAgainButton.y

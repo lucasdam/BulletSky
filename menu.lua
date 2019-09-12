@@ -20,19 +20,27 @@ function scene:create( event )
     local sceneGroup = self.view
     -- Code here runs when the scene is first created but has not yet appeared on screen
 
-    --Add menu background
+    -- Menu Background
+    local menuBackground = display.newImage( sceneGroup, "img/background.png")
+    menuBackground.x = 525
+    menuBackground.y = display.contentCenterY
+    menuBackground.width = 1390
+    menuBackground.height = 770
     
-    local title = display.newText( sceneGroup, "Death Bullets", display.contentCenterX, 700, native.systemFont, 100 )
-    title:setFillColor( 0.686, 0.388, 0.811 ) --0.82 0.86 1
+    local title = display.newText( sceneGroup, "Death Bullets", display.contentCenterX, 700, "fonts/blackchancery", 130 )
+    --title:setFillColor( 0.82, 0.86, 1 )
+    --title:setFillColor( 0.686, 0.388, 0.811 )
+    --title:setFillColor( 0.650, 0.321, 0.898 ) 
+    title:setFillColor( 0.627, 0.584, 0.839 ) 
     title.x = display.contentCenterX
-    title.y = display.contentCenterY
+    title.y = display.contentCenterY - 30
 
     -- Play
     local playButton = display.newImageRect( sceneGroup, "img/play.png", 100, 100 )
     playButton.x = display.contentCenterX - 240
     playButton.y = display.contentCenterY + 220
 
-    local playText = display.newText( sceneGroup, "Play", display.contentCenterX, 700, native.systemFont, 44 )
+    local playText = display.newText( sceneGroup, "Play", display.contentCenterX, 700, "fonts/blackchancery", 44 )
     playText:setFillColor( 1, 1, 1 )
     playText.x = playButton.x + 120
     playText.y = playButton.y
@@ -42,7 +50,7 @@ function scene:create( event )
     highScoresButton.x = display.contentCenterX + 80
     highScoresButton.y = display.contentCenterY + 220
     
-    local highScoresText = display.newText( sceneGroup, "Scores", display.contentCenterX, 700, native.systemFont, 44 )
+    local highScoresText = display.newText( sceneGroup, "Scores", display.contentCenterX, 700, "fonts/blackchancery", 44 )
     highScoresText:setFillColor( 1, 1, 1 )
     highScoresText.x = highScoresButton.x + 147
     highScoresText.y = highScoresButton.y
