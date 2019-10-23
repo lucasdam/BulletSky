@@ -106,7 +106,7 @@ local function createOrb()
 
 -- Spell
 local function spell()
-    -- audio.play( fireSound ) 
+    audio.play( fireSound ) 
     local newSpell = display.newImageRect( mainGroup, "img/spell.png", 30, 20 )
     physics.addBody( newSpell, "dynamic", {isSensor=true} )
     newSpell.isBullet = true
@@ -302,8 +302,8 @@ function scene:create( event )
         girl:addEventListener( "touch", dragGirl )
 
         -- explosionSound = audio.loadSound( "sounds/explosion.mp3" )
-        -- fireSound = audio.loadSound( "sounds/spell.wav" )
-        -- musicTrack = audio.loadSound( "sounds/ingame.mp3" )
+        fireSound = audio.loadSound( "sounds/fire3.mp3" )
+        musicTrack = audio.loadSound( "sounds/game.mp3" )
 
 end
 
@@ -322,8 +322,8 @@ function scene:show( event )
         Runtime:addEventListener( "collision", onCollision )
         gameLoopTimer = timer.performWithDelay( 700, gameLoop, 0 )
         gameSpellTimer = timer.performWithDelay( 400, spellLoop, 0 )
-        -- audio.setVolume( 0.4, {channel=1} )
-        -- audio.play( musickTrack, {channel=1, loops=-1} )
+        audio.setVolume( 0.4, {channel=1} )
+        audio.play( musickTrack, {channel=1, loops=-1} )
     end
 end
 
@@ -340,7 +340,7 @@ function scene:hide( event )
         -- Code here runs immediateley after the scene goes entirely off screnn
         Runtime:removeEventListener( "collision", onCollision )
         physics.pause()
-        --audio.stop( 1 )
+        audio.stop( 1 )
         composer.removeScene( "game" )
     end
 end
@@ -352,8 +352,8 @@ function scene:destroy( event )
     -- Code here runs prior to the removel of scene's view
 
     --audio.dispose( explosionSound )
-    --audio.dispose( fireSound )
-    --audio.dispose( musicTrack )
+    audio.dispose( fireSound )
+    audio.dispose( musicTrack )
 end
 
 -- Scene event function listeners

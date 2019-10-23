@@ -2,6 +2,9 @@ local composer = require( "composer" )
 
 local scene = composer.newScene()
 
+local musicTrack
+musicTrack = audio.loadStream( "sounds/windsOfStoriesSound.mp3" )
+
 -- Initialize variables
 
 local json = require( "json" )
@@ -77,6 +80,11 @@ function scene:create( event )
     saveScores()
 
     --Load background
+    local menuBackground = display.newImage( sceneGroup, "img/background.png")
+    menuBackground.x = 525
+    menuBackground.y = display.contentCenterY
+    menuBackground.width = 1390
+    menuBackground.height = 770
 
     local highScoresHeader = display.newText( sceneGroup, "High Scores", display.contentCenterX, 130, "fonts/blackchancery", 70 )
     highScoresHeader:setFillColor( 0.9, 0.9, 0.3 )
@@ -132,6 +140,8 @@ function scene:show( event )
         -- Code here runs when the scene is still of screen (but is about to come on screen)
     elseif ( phase == "did" ) then
         -- Code here runs when the scene is entirely on screen
+        audio.setVolume( 0.4, {channel=1} )
+        audio.play( musicTrack, {channel=1, loops=-1} )
     end
 end
 
@@ -145,6 +155,7 @@ function scene:hide( event )
         -- Code here runs when the scene is on screen (but is about to go off screen)
     elseif ( phase == "did" ) then
         composer.removeScene( "highscores" )
+        audio.stop( 1 )
     end
 end
 
@@ -153,6 +164,7 @@ function scene:destroy( event )
 
     local sceneGroup = self.view
     -- Code here runs prior to the removal of scene's view
+    audio.stop( 1 )
 end
 
 -- Scene event function listeners

@@ -2,7 +2,7 @@ local composer = require( "composer" )
 
 local scene = composer.newScene()
 
--- local musicTrack
+local musicTrack
 
 local function gotoGame()
     composer.gotoScene( "game", {time=800, effect="crossFade"} )
@@ -60,7 +60,7 @@ function scene:create( event )
     highScoresButton:addEventListener( "tap", gotoHighScores )
     highScoresText:addEventListener( "tap", gotoHighScores )
 
-    --musicTrack = audio.loadStream( "sounds/menu.mp3" )
+    musicTrack = audio.loadStream( "sounds/windsOfStoriesSound.mp3" )
 
 end
 
@@ -74,8 +74,8 @@ function scene:show( event )
         -- Code here runs when the scene is still off screen (but is about to come on screen)
     elseif ( phase == "did" ) then
         -- Code here runs when the scne is entirely on screen
-        --audio.setVolume( 0.4, {channel=1} )
-        --audio.play( musicTrack, {channel=1, loops=-1} )
+        audio.setVolume( 0.4, {channel=1} )
+        audio.play( musicTrack, {channel=1, loops=-1} )
     end
 end
 
@@ -89,7 +89,7 @@ function scene:hide( event )
         -- Code here runs when the scene is on screen (but is about to go off screen)
     elseif ( phase == "did" ) then
         -- Code here runs immediately after the scene goes entirely off screen
-        --audio.stop( 1 )
+        audio.stop( 1 )
     end
 end
 
@@ -98,7 +98,7 @@ function scene:destroy( event )
 
     local sceneGroup = self.view
     -- Code here runs prior to the removal of scene's view
-    --audio.stop( 1 )
+    audio.stop( 1 )
 end
 
 -- Scene event function listeners
