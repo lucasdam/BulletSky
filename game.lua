@@ -307,6 +307,22 @@ function scene:create( event )
 
 end
 
+-- buttons Movement
+        --leftButton = display.newImageRect("img/leftdark.png", 80, 80 )
+       -- leftButton.x = -50
+        --leftButton.y = 600
+
+        --rightButton = display.newImageRect( "img/rightdark.png", 80, 80 )
+        --rightButton.x = 50
+       -- rightButton.y = 600
+
+      --  upButton = display.newImageRect( "img/updark.png", 80, 80 )
+       -- upButton.x = 0
+       -- upButton.y = 550
+
+        --downButton = display.newImageRect( "img/downdark.png", 80, 80 )
+       -- downButton.x = 0
+       -- downButton.y = 650
 
 -- show()
 function scene:show( event )
