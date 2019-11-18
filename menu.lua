@@ -28,9 +28,6 @@ function scene:create( event )
     menuBackground.height = 770
     
     local title = display.newText( sceneGroup, "Death Bullets", display.contentCenterX, 700, "fonts/blackchancery", 130 )
-    --title:setFillColor( 0.82, 0.86, 1 )
-    --title:setFillColor( 0.686, 0.388, 0.811 )
-    --title:setFillColor( 0.650, 0.321, 0.898 ) 
     title:setFillColor( 0.627, 0.584, 0.839 ) 
     title.x = display.contentCenterX
     title.y = display.contentCenterY - 30
@@ -60,7 +57,8 @@ function scene:create( event )
     highScoresButton:addEventListener( "tap", gotoHighScores )
     highScoresText:addEventListener( "tap", gotoHighScores )
 
-    musicTrack = audio.loadStream( "sounds/windsOfStoriesSound.mp3" )
+    --musicTrack = audio.loadStream( "sounds/windsOfStoriesSound.mp3" )
+    musicTrack = audio.loadStream( "sounds/newland.mp3" )
 
 end
 

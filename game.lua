@@ -107,7 +107,7 @@ local function createOrb()
 -- Spell
 local function spell()
     audio.play( fireSound ) 
-    local newSpell = display.newImageRect( mainGroup, "img/spell.png", 30, 20 )
+    local newSpell = display.newImageRect( mainGroup, "img/fireball.png", 40, 40 )
     physics.addBody( newSpell, "dynamic", {isSensor=true} )
     newSpell.isBullet = true
     newSpell.myName = "spell"
@@ -150,7 +150,8 @@ local function spellLoop()
     if ( lives == 0 ) then
         return nil
     else
-        spell() --girl:addEventListener( "tap", spell )
+        --background:addEventListener( "tap", spell )
+        spell() 
     end
 end
 
@@ -278,7 +279,8 @@ function scene:create( event )
     sceneGroup:insert( uiGroup )    -- Insert into the scene's view group
 
 -- Background
-    local background = display.newImage( backGroup, "img/background.png")
+        -- local
+        background = display.newImage( backGroup, "img/background.png")
         background.x = 525
         background.y = display.contentCenterY
         background.width = 1390
@@ -302,7 +304,7 @@ function scene:create( event )
         girl:addEventListener( "touch", dragGirl )
 
         -- explosionSound = audio.loadSound( "sounds/explosion.mp3" )
-        fireSound = audio.loadSound( "sounds/fire3.mp3" )
+        fireSound = audio.loadSound( "sounds/fireSound.wav" )
         musicTrack = audio.loadSound( "sounds/game.mp3" )
 
 end
@@ -323,6 +325,8 @@ end
         --downButton = display.newImageRect( "img/downdark.png", 80, 80 )
        -- downButton.x = 0
        -- downButton.y = 650
+
+    --musicTrack = audio.loadStream( "sounds/newland.mp3" )
 
 -- show()
 function scene:show( event )
